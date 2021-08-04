@@ -1,0 +1,50 @@
+﻿@model IEnumerable<InventoryMnamgmentSystemV5.Models.Items>
+
+@{
+    ViewBag.Title = "تقرير العناصر";
+}
+
+<h2>تقرير بجميع العناصر المسجلة في النظام</h2>
+
+
+<form style="display:inline-block; margin-right:5px">
+    الرقم التسلسلي: <input type="text" name="searchString" />
+    <input type="submit" value="بحث" />
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            <h3>الرقم التسلسلي</h3>
+        </th>
+        <th>
+            <h3>النوع</h3>
+        </th>
+        <th>
+            <h3>العلامة التجارية</h3>
+        </th>
+        <th>
+            <h3>حالة العنصر</h3>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISerialNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IType.ITypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IBrand.BrandName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IStatus.StatusName)
+            </td>
+        </tr>
+    }
+
+</table>

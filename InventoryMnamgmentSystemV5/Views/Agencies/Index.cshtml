@@ -1,0 +1,42 @@
+﻿@model IEnumerable<InventoryMnamgmentSystemV5.Models.Agency>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>الإدارات</h2>
+
+<div>
+    <p style="display:inline-block">
+        @Html.ActionLink("إضافة إدارة", "Create")
+    </p>
+    <form asp-controller="Agencies" asp-action="Index" style="display:inline-block; margin-right:80px">
+        <p>
+            الإدارة: <input type="text" name="SearchString" />
+            <input type="submit" value="بحث" />
+        </p>
+    </form>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            <h3>الإدارة</h3>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AgencyName)
+        </td>
+        <td>
+            @Html.ActionLink("تعديل", "Edit", new { id=item.AgencyID }) |
+            @Html.ActionLink("تفاصيل", "Details", new { id=item.AgencyID }) |
+            @Html.ActionLink("حذف", "Delete", new { id=item.AgencyID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<InventoryMnamgmentSystemV5.Models.Items>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>العناصر</h2>
+
+<div>
+    <p style="display:inline-block">
+        @Html.ActionLink("اضافة عنصر", "Create")
+    </p>
+    <form style="display:inline-block; margin-right:80px">
+        الرقم التسلسلي: <input type="text" name="searchString"/>
+        <input type="submit" value="بحث"/>
+    </form>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            <h3>الرقم التسلسلي</h3>
+        </th>
+        <th>
+            <h3>النوع</h3>
+        </th>
+        <th>
+            <h3>العلامة التجارية</h3>
+        </th>
+        <th>
+            <h3>حالة العنصر</h3>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISerialNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IType.ITypeName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IBrand.BrandName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IStatus.StatusName)
+        </td>
+        <td>
+            @Html.ActionLink("تعديل", "Edit", new { id=item.ItemId }) |
+            @Html.ActionLink("تفاصيل", "Details", new { id=item.ItemId }) |
+            @Html.ActionLink("حذف", "Delete", new { id=item.ItemId })
+        </td>
+    </tr>
+}
+
+</table>

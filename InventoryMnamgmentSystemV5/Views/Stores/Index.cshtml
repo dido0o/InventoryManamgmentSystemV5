@@ -1,0 +1,45 @@
+﻿@model IEnumerable<InventoryMnamgmentSystemV5.Models.Stores>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>المخازن</h2>
+
+<p>
+    @Html.ActionLink("اضافة مخزن", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <h3>اسم المخزن</h3>
+        </th>
+        <th>
+            <h3>موقع المخزن</h3>
+        </th>
+        <th>
+            <h3>تفاصيل اضافية</h3>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StoreName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LLocation.LocationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StoreDetails)
+        </td>
+        <td>
+            @Html.ActionLink("تعديل", "Edit", new { id=item.StoreId }) |
+            @Html.ActionLink("تفاصيل", "Details", new { id=item.StoreId }) |
+            @Html.ActionLink("حذف", "Delete", new { id=item.StoreId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<InventoryMnamgmentSystemV5.Models.UsersItems>
+
+@{
+    ViewBag.Title = "تسليم عهدة";
+}
+
+<h2>العناصر والمستخدمين</h2>
+
+<div style="margin:7px">
+    <p style="display:inline-block">
+        @Html.ActionLink("تسليم عهدة", "Create")
+    </p>
+    <form style="display:inline-block; margin-right:80px">
+        الرقم التسلسلي: <input type="text" name="searchString"/>
+        <input type="submit" value="بحث"/>
+    </form>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            <h3>الرقم التسلسلي</h3>
+        </th>
+        <th>
+            <h3>اسم المستخدم</h3>
+        </th>
+        <th>
+            <h3>حالة العهدة</h3>
+        </th>
+        <th>
+            <h3>التاريخ والوقت</h3>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Items.ISerialNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VUsers.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IStatus.StatusName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.currentDateTime)
+            </td>
+
+            <td>
+                @Html.ActionLink("تعديل", "Edit", new { id = item.RecordId }) |
+                @Html.ActionLink("تفاصيل", "Details", new { id = item.RecordId }) |
+                @Html.ActionLink("حذف", "Delete", new { id = item.RecordId })
+            </td>
+        </tr>
+    }
+
+</table>

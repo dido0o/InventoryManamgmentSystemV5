@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f69c122ca46a45ad9b6cc123f4ac0a51" Name="Diagram1" ZoomLevel="60">
+        <EntityTypeShape EntityType="InventoryManagmentSystemModel.Agency" Width="1.5" PointX="1.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryManagmentSystemModel.AgencyUserMapping" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryManagmentSystemModel.IBrand" Width="1.5" PointX="3.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryManagmentSystemModel.IMovingItem" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryManagmentSystemModel.IReturnItem" Width="1.5" PointX="6" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryManagmentSystemModel.IStatus" Width="1.5" PointX="0.75" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryManagmentSystemModel.ItemHistory" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryManagmentSystemModel.Items" Width="1.5" PointX="6" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryManagmentSystemModel.IType" Width="1.5" PointX="3.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryManagmentSystemModel.LLocation" Width="1.5" PointX="3.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryManagmentSystemModel.StoreItems" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryManagmentSystemModel.Stores" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryManagmentSystemModel.UsersItems" Width="1.5" PointX="8.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryManagmentSystemModel.VUsers" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__AgencyUse__Agenc__2610A626" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__VUsers__AgencyId__22401542" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__AgencyUse__UserI__2704CA5F" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__Items__ItemBrand__19AACF41" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__IMovingIt__curre__3CF40B7E" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__IMovingIt__curre__3DE82FB7" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__IMovingIt__ItemI__3B0BC30C" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__IMovingIt__previ__3BFFE745" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__IReturnIt__IStat__5B78929E" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__IReturnIt__ItemI__59904A2C" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__IReturnIt__LastU__5A846E65" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.CurrentStatusId" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__ItemHisto__Curre__36470DEF" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__Items__IStatusID__1A9EF37A" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__ItemHisto__Curre__3552E9B6" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__ItemHisto__ItemI__345EC57D" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__Items__ItemTypeI__1B9317B3" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__StoreItem__ItemI__308E3499" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__UsersItem__ItemI__2AD55B43" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__Stores__StoreLoc__1F63A897" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__StoreItem__Store__2F9A1060" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__UsersItem__UserI__2BC97F7C" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="InventoryManagmentSystemModel.ReportingSystem" Width="1.5" PointX="11.25" PointY="8.125" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__Reporting__Agenc__69C6B1F5" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__Reporting__Brand__6BAEFA67" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__Reporting__Statu__6CA31EA0" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__Reporting__ItemI__67DE6983" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__Reporting__TypeI__6D9742D9" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__Reporting__Locat__6E8B6712" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__Reporting__Store__6ABAD62E" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.FK__Reporting__UserI__68D28DBC" />
+        <AssociationConnector Association="InventoryManagmentSystemModel.IStore" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

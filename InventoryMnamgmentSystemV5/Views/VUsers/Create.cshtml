@@ -1,0 +1,56 @@
+﻿@model InventoryMnamgmentSystemV5.Models.VUsers
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>اضافة مستخدم</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @*<h4>VUsers</h4>*@
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group" style="margin:7px">
+            <h5>هوية المستخدم</h5>
+            <div class="">
+                @Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-right:7px; margin-top:20px">
+            <h5>اسم المستخدم</h5>
+            <div class="">
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-right:7px; margin-top:20px">
+            <h5>الإدارة</h5>
+            <div class="">
+                @Html.DropDownList("AgencyId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.AgencyId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="margin-top:7px" >
+                <input type="submit" value="اضافة" class="" style="border-color:#808080"/>
+            </div>
+        </div>
+    </div>
+}
+
+<div style="">
+    @Html.ActionLink("الصفحة الرئيسية", "Index", "Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

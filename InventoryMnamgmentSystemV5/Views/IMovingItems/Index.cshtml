@@ -1,0 +1,72 @@
+﻿@model IEnumerable<InventoryMnamgmentSystemV5.Models.IMovingItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>العناصر المنقولة</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+
+<form asp-controller="Agencies" asp-action="Index" style="display:inline-block; margin-right:5px">
+    <p>
+        الرقم التسلسلي: <input type="text" name="SearchString" />
+        <input type="submit" value="بحث" />
+    </p>
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            <h3>الرقم التسلسلي</h3>
+        </th>
+        <th>
+            <h3>المستخدم الحالي</h3>
+        </th>
+        <th>
+            <h3>المستخدم السابق</h3>
+        </th>
+        <th>
+            <h3>حالة العهدة</h3>
+        </th>
+        <th>
+            <h3>التاريخ والوقت</h3>
+        </th>
+        <th>
+            <h3>ملاحظات</h3>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Items.ISerialNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VUsers1.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VUsers.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IStatus.StatusName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.curretnDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.notes)
+            </td>
+            <td>
+                @Html.ActionLink("تعديل", "Edit", new { id = item.RecordId }) |
+                @Html.ActionLink("تفاصيل", "Details", new { id = item.RecordId }) |
+                @Html.ActionLink("حذف", "Delete", new { id = item.RecordId })
+            </td>
+        </tr>
+    }
+
+</table>

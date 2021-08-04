@@ -1,0 +1,39 @@
+﻿@model IEnumerable<InventoryMnamgmentSystemV5.Models.StoreItems>
+
+@{
+    ViewBag.Title = "report";
+}
+
+<h2>تقرير العناصر حسب المستودع</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            <h3>الرقم التسلسلي</h3>
+        </th>
+        <th>
+            <h3>المستودع</h3>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Items.ISerialNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stores.StoreName)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RecordId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RecordId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RecordId })
+        </td>*@
+    </tr>
+}
+
+</table>

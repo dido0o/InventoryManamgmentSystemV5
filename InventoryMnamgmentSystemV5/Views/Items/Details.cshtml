@@ -1,0 +1,50 @@
+﻿@model InventoryMnamgmentSystemV5.Models.Items
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Items</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ISerialNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ISerialNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IBrand.BrandName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IBrand.BrandName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IStatus.StatusName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IStatus.StatusName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IType.ITypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IType.ITypeName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ItemId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

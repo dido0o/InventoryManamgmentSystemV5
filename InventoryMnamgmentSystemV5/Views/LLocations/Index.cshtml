@@ -1,0 +1,39 @@
+﻿@model IEnumerable<InventoryMnamgmentSystemV5.Models.LLocation>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>المواقع</h2>
+
+<div>
+    <p>
+        @Html.ActionLink("اضافة موقع", "Create")
+    </p>
+    <form>
+        اسم الموقع: <input type="text" name="searchString"/>
+        <input type="submit" value="بحث"/>
+    </form>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            <h3>اسم الموقع</h3>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LocationName)
+        </td>
+        <td>
+            @Html.ActionLink("تعديل", "Edit", new { id=item.LocationId }) |
+            @Html.ActionLink("تفاصيل", "Details", new { id=item.LocationId }) |
+            @Html.ActionLink("حذف", "Delete", new { id=item.LocationId })
+        </td>
+    </tr>
+}
+
+</table>

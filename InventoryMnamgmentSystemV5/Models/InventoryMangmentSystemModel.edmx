@@ -1,0 +1,1552 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="InventoryManagmentSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Agency">
+          <Key>
+            <PropertyRef Name="AgencyID" />
+          </Key>
+          <Property Name="AgencyID" Type="int" Nullable="false" />
+          <Property Name="AgencyName" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AgencyUserMapping">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AgencyId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IBrand">
+          <Key>
+            <PropertyRef Name="BrandID" />
+          </Key>
+          <Property Name="BrandID" Type="int" Nullable="false" />
+          <Property Name="BrandName" Type="nvarchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IMovingItem">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="previousUserId" Type="int" Nullable="false" />
+          <Property Name="currentUserId" Type="int" Nullable="false" />
+          <Property Name="currentStatusId" Type="int" Nullable="false" />
+          <Property Name="curretnDateTime" Type="datetime" Nullable="false" />
+          <Property Name="notes" Type="nvarchar" MaxLength="400" />
+        </EntityType>
+        <EntityType Name="IReturnItem">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="LastUserId" Type="int" Nullable="false" />
+          <Property Name="IStatusID" Type="int" Nullable="false" />
+          <Property Name="CurrentDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="StatusName" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ItemHistory">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="CurrentOwnerID" Type="int" Nullable="false" />
+          <Property Name="CurrentStatusID" Type="int" Nullable="false" />
+          <Property Name="CurrentDateTime" Type="datetime" Nullable="false" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="400" />
+        </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ISerialNum" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ItemTypeId" Type="int" Nullable="false" />
+          <Property Name="ItemBrandId" Type="int" Nullable="false" />
+          <Property Name="IStatusID" Type="int" Nullable="false" />
+          <Property Name="IStore" Type="int" />
+        </EntityType>
+        <EntityType Name="IType">
+          <Key>
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Name="TypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ITypeName" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LLocation">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="int" Nullable="false" />
+          <Property Name="LocationName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReportingSystem">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemId" Type="int" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="AgencyId" Type="int" />
+          <Property Name="StoreId" Type="int" />
+          <Property Name="BrandId" Type="int" />
+          <Property Name="StatusId" Type="int" />
+          <Property Name="TypeId" Type="int" />
+          <Property Name="LocationId" Type="int" />
+        </EntityType>
+        <EntityType Name="StoreItems">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StoreId" Type="int" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stores">
+          <Key>
+            <PropertyRef Name="StoreId" />
+          </Key>
+          <Property Name="StoreId" Type="int" Nullable="false" />
+          <Property Name="StoreName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="StoreLocationId" Type="int" Nullable="false" />
+          <Property Name="StoreDetails" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="UsersItems">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="currentDateTime" Type="datetime" Nullable="false" />
+          <Property Name="CurrentStatusId" Type="int" />
+        </EntityType>
+        <EntityType Name="VUsers">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="AgencyId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="CurrentStatusId">
+          <End Role="IStatus" Type="Self.IStatus" Multiplicity="0..1" />
+          <End Role="UsersItems" Type="Self.UsersItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="UsersItems">
+              <PropertyRef Name="CurrentStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AgencyUse__Agenc__2610A626">
+          <End Role="Agency" Type="Self.Agency" Multiplicity="1" />
+          <End Role="AgencyUserMapping" Type="Self.AgencyUserMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agency">
+              <PropertyRef Name="AgencyID" />
+            </Principal>
+            <Dependent Role="AgencyUserMapping">
+              <PropertyRef Name="AgencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AgencyUse__UserI__2704CA5F">
+          <End Role="VUsers" Type="Self.VUsers" Multiplicity="1" />
+          <End Role="AgencyUserMapping" Type="Self.AgencyUserMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="AgencyUserMapping">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IMovingIt__curre__3CF40B7E">
+          <End Role="IStatus" Type="Self.IStatus" Multiplicity="1" />
+          <End Role="IMovingItem" Type="Self.IMovingItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="IMovingItem">
+              <PropertyRef Name="currentStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IMovingIt__curre__3DE82FB7">
+          <End Role="VUsers" Type="Self.VUsers" Multiplicity="1" />
+          <End Role="IMovingItem" Type="Self.IMovingItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="IMovingItem">
+              <PropertyRef Name="currentUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IMovingIt__ItemI__3B0BC30C">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="IMovingItem" Type="Self.IMovingItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="IMovingItem">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IMovingIt__previ__3BFFE745">
+          <End Role="VUsers" Type="Self.VUsers" Multiplicity="1" />
+          <End Role="IMovingItem" Type="Self.IMovingItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="IMovingItem">
+              <PropertyRef Name="previousUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IReturnIt__IStat__5B78929E">
+          <End Role="IStatus" Type="Self.IStatus" Multiplicity="1" />
+          <End Role="IReturnItem" Type="Self.IReturnItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="IReturnItem">
+              <PropertyRef Name="IStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IReturnIt__ItemI__59904A2C">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="IReturnItem" Type="Self.IReturnItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="IReturnItem">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IReturnIt__LastU__5A846E65">
+          <End Role="VUsers" Type="Self.VUsers" Multiplicity="1" />
+          <End Role="IReturnItem" Type="Self.IReturnItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="IReturnItem">
+              <PropertyRef Name="LastUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ItemHisto__Curre__3552E9B6">
+          <End Role="VUsers" Type="Self.VUsers" Multiplicity="1" />
+          <End Role="ItemHistory" Type="Self.ItemHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ItemHistory">
+              <PropertyRef Name="CurrentOwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ItemHisto__Curre__36470DEF">
+          <End Role="IStatus" Type="Self.IStatus" Multiplicity="1" />
+          <End Role="ItemHistory" Type="Self.ItemHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="ItemHistory">
+              <PropertyRef Name="CurrentStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ItemHisto__ItemI__345EC57D">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="ItemHistory" Type="Self.ItemHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="ItemHistory">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Items__IStatusID__1A9EF37A">
+          <End Role="IStatus" Type="Self.IStatus" Multiplicity="1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="IStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Items__ItemBrand__19AACF41">
+          <End Role="IBrand" Type="Self.IBrand" Multiplicity="1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IBrand">
+              <PropertyRef Name="BrandID" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="ItemBrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Items__ItemTypeI__1B9317B3">
+          <End Role="IType" Type="Self.IType" Multiplicity="1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IType">
+              <PropertyRef Name="TypeId" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="ItemTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporting__Agenc__69C6B1F5">
+          <End Role="Agency" Type="Self.Agency" Multiplicity="0..1" />
+          <End Role="ReportingSystem" Type="Self.ReportingSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agency">
+              <PropertyRef Name="AgencyID" />
+            </Principal>
+            <Dependent Role="ReportingSystem">
+              <PropertyRef Name="AgencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporting__Brand__6BAEFA67">
+          <End Role="IBrand" Type="Self.IBrand" Multiplicity="0..1" />
+          <End Role="ReportingSystem" Type="Self.ReportingSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IBrand">
+              <PropertyRef Name="BrandID" />
+            </Principal>
+            <Dependent Role="ReportingSystem">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporting__ItemI__67DE6983">
+          <End Role="Items" Type="Self.Items" Multiplicity="0..1" />
+          <End Role="ReportingSystem" Type="Self.ReportingSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="ReportingSystem">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporting__Locat__6E8B6712">
+          <End Role="LLocation" Type="Self.LLocation" Multiplicity="0..1" />
+          <End Role="ReportingSystem" Type="Self.ReportingSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="ReportingSystem">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporting__Statu__6CA31EA0">
+          <End Role="IStatus" Type="Self.IStatus" Multiplicity="0..1" />
+          <End Role="ReportingSystem" Type="Self.ReportingSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="ReportingSystem">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporting__Store__6ABAD62E">
+          <End Role="Stores" Type="Self.Stores" Multiplicity="0..1" />
+          <End Role="ReportingSystem" Type="Self.ReportingSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stores">
+              <PropertyRef Name="StoreId" />
+            </Principal>
+            <Dependent Role="ReportingSystem">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporting__TypeI__6D9742D9">
+          <End Role="IType" Type="Self.IType" Multiplicity="0..1" />
+          <End Role="ReportingSystem" Type="Self.ReportingSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IType">
+              <PropertyRef Name="TypeId" />
+            </Principal>
+            <Dependent Role="ReportingSystem">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporting__UserI__68D28DBC">
+          <End Role="VUsers" Type="Self.VUsers" Multiplicity="0..1" />
+          <End Role="ReportingSystem" Type="Self.ReportingSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ReportingSystem">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StoreItem__ItemI__308E3499">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="StoreItems" Type="Self.StoreItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="StoreItems">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StoreItem__Store__2F9A1060">
+          <End Role="Stores" Type="Self.Stores" Multiplicity="1" />
+          <End Role="StoreItems" Type="Self.StoreItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stores">
+              <PropertyRef Name="StoreId" />
+            </Principal>
+            <Dependent Role="StoreItems">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stores__StoreLoc__1F63A897">
+          <End Role="LLocation" Type="Self.LLocation" Multiplicity="1" />
+          <End Role="Stores" Type="Self.Stores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="Stores">
+              <PropertyRef Name="StoreLocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsersItem__ItemI__2AD55B43">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="UsersItems" Type="Self.UsersItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="UsersItems">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsersItem__UserI__2BC97F7C">
+          <End Role="VUsers" Type="Self.VUsers" Multiplicity="1" />
+          <End Role="UsersItems" Type="Self.UsersItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UsersItems">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VUsers__AgencyId__22401542">
+          <End Role="Agency" Type="Self.Agency" Multiplicity="1" />
+          <End Role="VUsers" Type="Self.VUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agency">
+              <PropertyRef Name="AgencyID" />
+            </Principal>
+            <Dependent Role="VUsers">
+              <PropertyRef Name="AgencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="IStore">
+          <End Role="Stores" Type="Self.Stores" Multiplicity="0..1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stores">
+              <PropertyRef Name="StoreId" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="IStore" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InventoryManagmentSystemModelStoreContainer">
+          <EntitySet Name="Agency" EntityType="Self.Agency" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AgencyUserMapping" EntityType="Self.AgencyUserMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IBrand" EntityType="Self.IBrand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IMovingItem" EntityType="Self.IMovingItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IReturnItem" EntityType="Self.IReturnItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IStatus" EntityType="Self.IStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemHistory" EntityType="Self.ItemHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IType" EntityType="Self.IType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LLocation" EntityType="Self.LLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportingSystem" EntityType="Self.ReportingSystem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoreItems" EntityType="Self.StoreItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stores" EntityType="Self.Stores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersItems" EntityType="Self.UsersItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VUsers" EntityType="Self.VUsers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="CurrentStatusId" Association="Self.CurrentStatusId">
+            <End Role="IStatus" EntitySet="IStatus" />
+            <End Role="UsersItems" EntitySet="UsersItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AgencyUse__Agenc__2610A626" Association="Self.FK__AgencyUse__Agenc__2610A626">
+            <End Role="Agency" EntitySet="Agency" />
+            <End Role="AgencyUserMapping" EntitySet="AgencyUserMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AgencyUse__UserI__2704CA5F" Association="Self.FK__AgencyUse__UserI__2704CA5F">
+            <End Role="VUsers" EntitySet="VUsers" />
+            <End Role="AgencyUserMapping" EntitySet="AgencyUserMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IMovingIt__curre__3CF40B7E" Association="Self.FK__IMovingIt__curre__3CF40B7E">
+            <End Role="IStatus" EntitySet="IStatus" />
+            <End Role="IMovingItem" EntitySet="IMovingItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IMovingIt__curre__3DE82FB7" Association="Self.FK__IMovingIt__curre__3DE82FB7">
+            <End Role="VUsers" EntitySet="VUsers" />
+            <End Role="IMovingItem" EntitySet="IMovingItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IMovingIt__ItemI__3B0BC30C" Association="Self.FK__IMovingIt__ItemI__3B0BC30C">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="IMovingItem" EntitySet="IMovingItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IMovingIt__previ__3BFFE745" Association="Self.FK__IMovingIt__previ__3BFFE745">
+            <End Role="VUsers" EntitySet="VUsers" />
+            <End Role="IMovingItem" EntitySet="IMovingItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IReturnIt__IStat__5B78929E" Association="Self.FK__IReturnIt__IStat__5B78929E">
+            <End Role="IStatus" EntitySet="IStatus" />
+            <End Role="IReturnItem" EntitySet="IReturnItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IReturnIt__ItemI__59904A2C" Association="Self.FK__IReturnIt__ItemI__59904A2C">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="IReturnItem" EntitySet="IReturnItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IReturnIt__LastU__5A846E65" Association="Self.FK__IReturnIt__LastU__5A846E65">
+            <End Role="VUsers" EntitySet="VUsers" />
+            <End Role="IReturnItem" EntitySet="IReturnItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ItemHisto__Curre__3552E9B6" Association="Self.FK__ItemHisto__Curre__3552E9B6">
+            <End Role="VUsers" EntitySet="VUsers" />
+            <End Role="ItemHistory" EntitySet="ItemHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ItemHisto__Curre__36470DEF" Association="Self.FK__ItemHisto__Curre__36470DEF">
+            <End Role="IStatus" EntitySet="IStatus" />
+            <End Role="ItemHistory" EntitySet="ItemHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ItemHisto__ItemI__345EC57D" Association="Self.FK__ItemHisto__ItemI__345EC57D">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="ItemHistory" EntitySet="ItemHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Items__IStatusID__1A9EF37A" Association="Self.FK__Items__IStatusID__1A9EF37A">
+            <End Role="IStatus" EntitySet="IStatus" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Items__ItemBrand__19AACF41" Association="Self.FK__Items__ItemBrand__19AACF41">
+            <End Role="IBrand" EntitySet="IBrand" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Items__ItemTypeI__1B9317B3" Association="Self.FK__Items__ItemTypeI__1B9317B3">
+            <End Role="IType" EntitySet="IType" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporting__Agenc__69C6B1F5" Association="Self.FK__Reporting__Agenc__69C6B1F5">
+            <End Role="Agency" EntitySet="Agency" />
+            <End Role="ReportingSystem" EntitySet="ReportingSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporting__Brand__6BAEFA67" Association="Self.FK__Reporting__Brand__6BAEFA67">
+            <End Role="IBrand" EntitySet="IBrand" />
+            <End Role="ReportingSystem" EntitySet="ReportingSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporting__ItemI__67DE6983" Association="Self.FK__Reporting__ItemI__67DE6983">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="ReportingSystem" EntitySet="ReportingSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporting__Locat__6E8B6712" Association="Self.FK__Reporting__Locat__6E8B6712">
+            <End Role="LLocation" EntitySet="LLocation" />
+            <End Role="ReportingSystem" EntitySet="ReportingSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporting__Statu__6CA31EA0" Association="Self.FK__Reporting__Statu__6CA31EA0">
+            <End Role="IStatus" EntitySet="IStatus" />
+            <End Role="ReportingSystem" EntitySet="ReportingSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporting__Store__6ABAD62E" Association="Self.FK__Reporting__Store__6ABAD62E">
+            <End Role="Stores" EntitySet="Stores" />
+            <End Role="ReportingSystem" EntitySet="ReportingSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporting__TypeI__6D9742D9" Association="Self.FK__Reporting__TypeI__6D9742D9">
+            <End Role="IType" EntitySet="IType" />
+            <End Role="ReportingSystem" EntitySet="ReportingSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporting__UserI__68D28DBC" Association="Self.FK__Reporting__UserI__68D28DBC">
+            <End Role="VUsers" EntitySet="VUsers" />
+            <End Role="ReportingSystem" EntitySet="ReportingSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StoreItem__ItemI__308E3499" Association="Self.FK__StoreItem__ItemI__308E3499">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="StoreItems" EntitySet="StoreItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StoreItem__Store__2F9A1060" Association="Self.FK__StoreItem__Store__2F9A1060">
+            <End Role="Stores" EntitySet="Stores" />
+            <End Role="StoreItems" EntitySet="StoreItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stores__StoreLoc__1F63A897" Association="Self.FK__Stores__StoreLoc__1F63A897">
+            <End Role="LLocation" EntitySet="LLocation" />
+            <End Role="Stores" EntitySet="Stores" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsersItem__ItemI__2AD55B43" Association="Self.FK__UsersItem__ItemI__2AD55B43">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="UsersItems" EntitySet="UsersItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsersItem__UserI__2BC97F7C" Association="Self.FK__UsersItem__UserI__2BC97F7C">
+            <End Role="VUsers" EntitySet="VUsers" />
+            <End Role="UsersItems" EntitySet="UsersItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VUsers__AgencyId__22401542" Association="Self.FK__VUsers__AgencyId__22401542">
+            <End Role="Agency" EntitySet="Agency" />
+            <End Role="VUsers" EntitySet="VUsers" />
+          </AssociationSet>
+          <AssociationSet Name="IStore" Association="Self.IStore">
+            <End Role="Stores" EntitySet="Stores" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InventoryManagmentSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Agency">
+          <Key>
+            <PropertyRef Name="AgencyID" />
+          </Key>
+          <Property Name="AgencyID" Type="Int32" Nullable="false" />
+          <Property Name="AgencyName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AgencyUserMapping" Relationship="Self.FK__AgencyUse__Agenc__2610A626" FromRole="Agency" ToRole="AgencyUserMapping" />
+          <NavigationProperty Name="VUsers" Relationship="Self.FK__VUsers__AgencyId__22401542" FromRole="Agency" ToRole="VUsers" />
+          <NavigationProperty Name="ReportingSystem" Relationship="InventoryManagmentSystemModel.FK__Reporting__Agenc__69C6B1F5" FromRole="Agency" ToRole="ReportingSystem" />
+        </EntityType>
+        <EntityType Name="AgencyUserMapping">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AgencyId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Agency" Relationship="Self.FK__AgencyUse__Agenc__2610A626" FromRole="AgencyUserMapping" ToRole="Agency" />
+          <NavigationProperty Name="VUsers" Relationship="Self.FK__AgencyUse__UserI__2704CA5F" FromRole="AgencyUserMapping" ToRole="VUsers" />
+        </EntityType>
+        <EntityType Name="IBrand">
+          <Key>
+            <PropertyRef Name="BrandID" />
+          </Key>
+          <Property Name="BrandID" Type="Int32" Nullable="false" />
+          <Property Name="BrandName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Items" Relationship="Self.FK__Items__ItemBrand__19AACF41" FromRole="IBrand" ToRole="Items" />
+          <NavigationProperty Name="ReportingSystem" Relationship="InventoryManagmentSystemModel.FK__Reporting__Brand__6BAEFA67" FromRole="IBrand" ToRole="ReportingSystem" />
+        </EntityType>
+        <EntityType Name="IMovingItem">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="previousUserId" Type="Int32" Nullable="false" />
+          <Property Name="currentUserId" Type="Int32" Nullable="false" />
+          <Property Name="currentStatusId" Type="Int32" Nullable="false" />
+          <Property Name="curretnDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="notes" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="IStatus" Relationship="Self.FK__IMovingIt__curre__3CF40B7E" FromRole="IMovingItem" ToRole="IStatus" />
+          <NavigationProperty Name="VUsers" Relationship="Self.FK__IMovingIt__curre__3DE82FB7" FromRole="IMovingItem" ToRole="VUsers" />
+          <NavigationProperty Name="Items" Relationship="Self.FK__IMovingIt__ItemI__3B0BC30C" FromRole="IMovingItem" ToRole="Items" />
+          <NavigationProperty Name="VUsers1" Relationship="Self.FK__IMovingIt__previ__3BFFE745" FromRole="IMovingItem" ToRole="VUsers" />
+        </EntityType>
+        <EntityType Name="IReturnItem">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="LastUserId" Type="Int32" Nullable="false" />
+          <Property Name="IStatusID" Type="Int32" Nullable="false" />
+          <Property Name="CurrentDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="IStatus" Relationship="Self.FK__IReturnIt__IStat__5B78929E" FromRole="IReturnItem" ToRole="IStatus" />
+          <NavigationProperty Name="Items" Relationship="Self.FK__IReturnIt__ItemI__59904A2C" FromRole="IReturnItem" ToRole="Items" />
+          <NavigationProperty Name="VUsers" Relationship="Self.FK__IReturnIt__LastU__5A846E65" FromRole="IReturnItem" ToRole="VUsers" />
+        </EntityType>
+        <EntityType Name="IStatus">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="StatusName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="IMovingItem" Relationship="Self.FK__IMovingIt__curre__3CF40B7E" FromRole="IStatus" ToRole="IMovingItem" />
+          <NavigationProperty Name="IReturnItem" Relationship="Self.FK__IReturnIt__IStat__5B78929E" FromRole="IStatus" ToRole="IReturnItem" />
+          <NavigationProperty Name="UsersItems" Relationship="Self.CurrentStatusId" FromRole="IStatus" ToRole="UsersItems" />
+          <NavigationProperty Name="ItemHistory" Relationship="Self.FK__ItemHisto__Curre__36470DEF" FromRole="IStatus" ToRole="ItemHistory" />
+          <NavigationProperty Name="Items" Relationship="Self.FK__Items__IStatusID__1A9EF37A" FromRole="IStatus" ToRole="Items" />
+          <NavigationProperty Name="ReportingSystem" Relationship="InventoryManagmentSystemModel.FK__Reporting__Statu__6CA31EA0" FromRole="IStatus" ToRole="ReportingSystem" />
+        </EntityType>
+        <EntityType Name="ItemHistory">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="CurrentOwnerID" Type="Int32" Nullable="false" />
+          <Property Name="CurrentStatusID" Type="Int32" Nullable="false" />
+          <Property Name="CurrentDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Notes" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="IStatus" Relationship="Self.FK__ItemHisto__Curre__36470DEF" FromRole="ItemHistory" ToRole="IStatus" />
+          <NavigationProperty Name="VUsers" Relationship="Self.FK__ItemHisto__Curre__3552E9B6" FromRole="ItemHistory" ToRole="VUsers" />
+          <NavigationProperty Name="Items" Relationship="Self.FK__ItemHisto__ItemI__345EC57D" FromRole="ItemHistory" ToRole="Items" />
+        </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ISerialNum" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ItemTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ItemBrandId" Type="Int32" Nullable="false" />
+          <Property Name="IStatusID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="IBrand" Relationship="Self.FK__Items__ItemBrand__19AACF41" FromRole="Items" ToRole="IBrand" />
+          <NavigationProperty Name="IMovingItem" Relationship="Self.FK__IMovingIt__ItemI__3B0BC30C" FromRole="Items" ToRole="IMovingItem" />
+          <NavigationProperty Name="IReturnItem" Relationship="Self.FK__IReturnIt__ItemI__59904A2C" FromRole="Items" ToRole="IReturnItem" />
+          <NavigationProperty Name="IStatus" Relationship="Self.FK__Items__IStatusID__1A9EF37A" FromRole="Items" ToRole="IStatus" />
+          <NavigationProperty Name="ItemHistory" Relationship="Self.FK__ItemHisto__ItemI__345EC57D" FromRole="Items" ToRole="ItemHistory" />
+          <NavigationProperty Name="IType" Relationship="Self.FK__Items__ItemTypeI__1B9317B3" FromRole="Items" ToRole="IType" />
+          <NavigationProperty Name="StoreItems" Relationship="Self.FK__StoreItem__ItemI__308E3499" FromRole="Items" ToRole="StoreItems" />
+          <NavigationProperty Name="UsersItems" Relationship="Self.FK__UsersItem__ItemI__2AD55B43" FromRole="Items" ToRole="UsersItems" />
+          <NavigationProperty Name="ReportingSystem" Relationship="InventoryManagmentSystemModel.FK__Reporting__ItemI__67DE6983" FromRole="Items" ToRole="ReportingSystem" />
+          <Property Name="IStore" Type="Int32" />
+          <NavigationProperty Name="Stores" Relationship="InventoryManagmentSystemModel.IStore" FromRole="Items" ToRole="Stores" />
+        </EntityType>
+        <EntityType Name="IType">
+          <Key>
+            <PropertyRef Name="TypeId" />
+          </Key>
+          <Property Name="TypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ITypeName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Items" Relationship="Self.FK__Items__ItemTypeI__1B9317B3" FromRole="IType" ToRole="Items" />
+          <NavigationProperty Name="ReportingSystem" Relationship="InventoryManagmentSystemModel.FK__Reporting__TypeI__6D9742D9" FromRole="IType" ToRole="ReportingSystem" />
+        </EntityType>
+        <EntityType Name="LLocation">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="Int32" Nullable="false" />
+          <Property Name="LocationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Stores" Relationship="Self.FK__Stores__StoreLoc__1F63A897" FromRole="LLocation" ToRole="Stores" />
+          <NavigationProperty Name="ReportingSystem" Relationship="InventoryManagmentSystemModel.FK__Reporting__Locat__6E8B6712" FromRole="LLocation" ToRole="ReportingSystem" />
+        </EntityType>
+        <EntityType Name="StoreItems">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoreId" Type="Int32" Nullable="false" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Items" Relationship="Self.FK__StoreItem__ItemI__308E3499" FromRole="StoreItems" ToRole="Items" />
+          <NavigationProperty Name="Stores" Relationship="Self.FK__StoreItem__Store__2F9A1060" FromRole="StoreItems" ToRole="Stores" />
+        </EntityType>
+        <EntityType Name="Stores">
+          <Key>
+            <PropertyRef Name="StoreId" />
+          </Key>
+          <Property Name="StoreId" Type="Int32" Nullable="false" />
+          <Property Name="StoreName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StoreLocationId" Type="Int32" Nullable="false" />
+          <Property Name="StoreDetails" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LLocation" Relationship="Self.FK__Stores__StoreLoc__1F63A897" FromRole="Stores" ToRole="LLocation" />
+          <NavigationProperty Name="StoreItems" Relationship="Self.FK__StoreItem__Store__2F9A1060" FromRole="Stores" ToRole="StoreItems" />
+          <NavigationProperty Name="ReportingSystem" Relationship="InventoryManagmentSystemModel.FK__Reporting__Store__6ABAD62E" FromRole="Stores" ToRole="ReportingSystem" />
+          <NavigationProperty Name="Items" Relationship="InventoryManagmentSystemModel.IStore" FromRole="Stores" ToRole="Items" />
+        </EntityType>
+        <EntityType Name="UsersItems">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="currentDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CurrentStatusId" Type="Int32" />
+          <NavigationProperty Name="IStatus" Relationship="Self.CurrentStatusId" FromRole="UsersItems" ToRole="IStatus" />
+          <NavigationProperty Name="Items" Relationship="Self.FK__UsersItem__ItemI__2AD55B43" FromRole="UsersItems" ToRole="Items" />
+          <NavigationProperty Name="VUsers" Relationship="Self.FK__UsersItem__UserI__2BC97F7C" FromRole="UsersItems" ToRole="VUsers" />
+        </EntityType>
+        <EntityType Name="VUsers">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AgencyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Agency" Relationship="Self.FK__VUsers__AgencyId__22401542" FromRole="VUsers" ToRole="Agency" />
+          <NavigationProperty Name="AgencyUserMapping" Relationship="Self.FK__AgencyUse__UserI__2704CA5F" FromRole="VUsers" ToRole="AgencyUserMapping" />
+          <NavigationProperty Name="IMovingItem" Relationship="Self.FK__IMovingIt__curre__3DE82FB7" FromRole="VUsers" ToRole="IMovingItem" />
+          <NavigationProperty Name="IMovingItem1" Relationship="Self.FK__IMovingIt__previ__3BFFE745" FromRole="VUsers" ToRole="IMovingItem" />
+          <NavigationProperty Name="IReturnItem" Relationship="Self.FK__IReturnIt__LastU__5A846E65" FromRole="VUsers" ToRole="IReturnItem" />
+          <NavigationProperty Name="ItemHistory" Relationship="Self.FK__ItemHisto__Curre__3552E9B6" FromRole="VUsers" ToRole="ItemHistory" />
+          <NavigationProperty Name="UsersItems" Relationship="Self.FK__UsersItem__UserI__2BC97F7C" FromRole="VUsers" ToRole="UsersItems" />
+          <NavigationProperty Name="ReportingSystem" Relationship="InventoryManagmentSystemModel.FK__Reporting__UserI__68D28DBC" FromRole="VUsers" ToRole="ReportingSystem" />
+        </EntityType>
+        <Association Name="FK__AgencyUse__Agenc__2610A626">
+          <End Role="Agency" Type="Self.Agency" Multiplicity="1" />
+          <End Role="AgencyUserMapping" Type="Self.AgencyUserMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agency">
+              <PropertyRef Name="AgencyID" />
+            </Principal>
+            <Dependent Role="AgencyUserMapping">
+              <PropertyRef Name="AgencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VUsers__AgencyId__22401542">
+          <End Role="Agency" Type="Self.Agency" Multiplicity="1" />
+          <End Role="VUsers" Type="Self.VUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agency">
+              <PropertyRef Name="AgencyID" />
+            </Principal>
+            <Dependent Role="VUsers">
+              <PropertyRef Name="AgencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AgencyUse__UserI__2704CA5F">
+          <End Role="VUsers" Type="Self.VUsers" Multiplicity="1" />
+          <End Role="AgencyUserMapping" Type="Self.AgencyUserMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="AgencyUserMapping">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Items__ItemBrand__19AACF41">
+          <End Role="IBrand" Type="Self.IBrand" Multiplicity="1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IBrand">
+              <PropertyRef Name="BrandID" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="ItemBrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IMovingIt__curre__3CF40B7E">
+          <End Role="IStatus" Type="Self.IStatus" Multiplicity="1" />
+          <End Role="IMovingItem" Type="Self.IMovingItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="IMovingItem">
+              <PropertyRef Name="currentStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IMovingIt__curre__3DE82FB7">
+          <End Role="VUsers" Type="Self.VUsers" Multiplicity="1" />
+          <End Role="IMovingItem" Type="Self.IMovingItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="IMovingItem">
+              <PropertyRef Name="currentUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IMovingIt__ItemI__3B0BC30C">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="IMovingItem" Type="Self.IMovingItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="IMovingItem">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IMovingIt__previ__3BFFE745">
+          <End Role="VUsers" Type="Self.VUsers" Multiplicity="1" />
+          <End Role="IMovingItem" Type="Self.IMovingItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="IMovingItem">
+              <PropertyRef Name="previousUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IReturnIt__IStat__5B78929E">
+          <End Role="IStatus" Type="Self.IStatus" Multiplicity="1" />
+          <End Role="IReturnItem" Type="Self.IReturnItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="IReturnItem">
+              <PropertyRef Name="IStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IReturnIt__ItemI__59904A2C">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="IReturnItem" Type="Self.IReturnItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="IReturnItem">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__IReturnIt__LastU__5A846E65">
+          <End Role="VUsers" Type="Self.VUsers" Multiplicity="1" />
+          <End Role="IReturnItem" Type="Self.IReturnItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="IReturnItem">
+              <PropertyRef Name="LastUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CurrentStatusId">
+          <End Role="IStatus" Type="Self.IStatus" Multiplicity="0..1" />
+          <End Role="UsersItems" Type="Self.UsersItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="UsersItems">
+              <PropertyRef Name="CurrentStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ItemHisto__Curre__36470DEF">
+          <End Role="IStatus" Type="Self.IStatus" Multiplicity="1" />
+          <End Role="ItemHistory" Type="Self.ItemHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="ItemHistory">
+              <PropertyRef Name="CurrentStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Items__IStatusID__1A9EF37A">
+          <End Role="IStatus" Type="Self.IStatus" Multiplicity="1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="IStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ItemHisto__Curre__3552E9B6">
+          <End Role="VUsers" Type="Self.VUsers" Multiplicity="1" />
+          <End Role="ItemHistory" Type="Self.ItemHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ItemHistory">
+              <PropertyRef Name="CurrentOwnerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ItemHisto__ItemI__345EC57D">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="ItemHistory" Type="Self.ItemHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="ItemHistory">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Items__ItemTypeI__1B9317B3">
+          <End Role="IType" Type="Self.IType" Multiplicity="1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IType">
+              <PropertyRef Name="TypeId" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="ItemTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StoreItem__ItemI__308E3499">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="StoreItems" Type="Self.StoreItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="StoreItems">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsersItem__ItemI__2AD55B43">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="UsersItems" Type="Self.UsersItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="UsersItems">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Stores__StoreLoc__1F63A897">
+          <End Role="LLocation" Type="Self.LLocation" Multiplicity="1" />
+          <End Role="Stores" Type="Self.Stores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="Stores">
+              <PropertyRef Name="StoreLocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__StoreItem__Store__2F9A1060">
+          <End Role="Stores" Type="Self.Stores" Multiplicity="1" />
+          <End Role="StoreItems" Type="Self.StoreItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stores">
+              <PropertyRef Name="StoreId" />
+            </Principal>
+            <Dependent Role="StoreItems">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsersItem__UserI__2BC97F7C">
+          <End Role="VUsers" Type="Self.VUsers" Multiplicity="1" />
+          <End Role="UsersItems" Type="Self.UsersItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UsersItems">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InventoryManagmentSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Agency" EntityType="Self.Agency" />
+          <EntitySet Name="AgencyUserMapping" EntityType="Self.AgencyUserMapping" />
+          <EntitySet Name="IBrand" EntityType="Self.IBrand" />
+          <EntitySet Name="IMovingItem" EntityType="Self.IMovingItem" />
+          <EntitySet Name="IReturnItem" EntityType="Self.IReturnItem" />
+          <EntitySet Name="IStatus" EntityType="Self.IStatus" />
+          <EntitySet Name="ItemHistory" EntityType="Self.ItemHistory" />
+          <EntitySet Name="Items" EntityType="Self.Items" />
+          <EntitySet Name="IType" EntityType="Self.IType" />
+          <EntitySet Name="LLocation" EntityType="Self.LLocation" />
+          <EntitySet Name="StoreItems" EntityType="Self.StoreItems" />
+          <EntitySet Name="Stores" EntityType="Self.Stores" />
+          <EntitySet Name="UsersItems" EntityType="Self.UsersItems" />
+          <EntitySet Name="VUsers" EntityType="Self.VUsers" />
+          <AssociationSet Name="FK__AgencyUse__Agenc__2610A626" Association="Self.FK__AgencyUse__Agenc__2610A626">
+            <End Role="Agency" EntitySet="Agency" />
+            <End Role="AgencyUserMapping" EntitySet="AgencyUserMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VUsers__AgencyId__22401542" Association="Self.FK__VUsers__AgencyId__22401542">
+            <End Role="Agency" EntitySet="Agency" />
+            <End Role="VUsers" EntitySet="VUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AgencyUse__UserI__2704CA5F" Association="Self.FK__AgencyUse__UserI__2704CA5F">
+            <End Role="VUsers" EntitySet="VUsers" />
+            <End Role="AgencyUserMapping" EntitySet="AgencyUserMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Items__ItemBrand__19AACF41" Association="Self.FK__Items__ItemBrand__19AACF41">
+            <End Role="IBrand" EntitySet="IBrand" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IMovingIt__curre__3CF40B7E" Association="Self.FK__IMovingIt__curre__3CF40B7E">
+            <End Role="IStatus" EntitySet="IStatus" />
+            <End Role="IMovingItem" EntitySet="IMovingItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IMovingIt__curre__3DE82FB7" Association="Self.FK__IMovingIt__curre__3DE82FB7">
+            <End Role="VUsers" EntitySet="VUsers" />
+            <End Role="IMovingItem" EntitySet="IMovingItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IMovingIt__ItemI__3B0BC30C" Association="Self.FK__IMovingIt__ItemI__3B0BC30C">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="IMovingItem" EntitySet="IMovingItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IMovingIt__previ__3BFFE745" Association="Self.FK__IMovingIt__previ__3BFFE745">
+            <End Role="VUsers" EntitySet="VUsers" />
+            <End Role="IMovingItem" EntitySet="IMovingItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IReturnIt__IStat__5B78929E" Association="Self.FK__IReturnIt__IStat__5B78929E">
+            <End Role="IStatus" EntitySet="IStatus" />
+            <End Role="IReturnItem" EntitySet="IReturnItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IReturnIt__ItemI__59904A2C" Association="Self.FK__IReturnIt__ItemI__59904A2C">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="IReturnItem" EntitySet="IReturnItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IReturnIt__LastU__5A846E65" Association="Self.FK__IReturnIt__LastU__5A846E65">
+            <End Role="VUsers" EntitySet="VUsers" />
+            <End Role="IReturnItem" EntitySet="IReturnItem" />
+          </AssociationSet>
+          <AssociationSet Name="CurrentStatusId" Association="Self.CurrentStatusId">
+            <End Role="IStatus" EntitySet="IStatus" />
+            <End Role="UsersItems" EntitySet="UsersItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ItemHisto__Curre__36470DEF" Association="Self.FK__ItemHisto__Curre__36470DEF">
+            <End Role="IStatus" EntitySet="IStatus" />
+            <End Role="ItemHistory" EntitySet="ItemHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Items__IStatusID__1A9EF37A" Association="Self.FK__Items__IStatusID__1A9EF37A">
+            <End Role="IStatus" EntitySet="IStatus" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ItemHisto__Curre__3552E9B6" Association="Self.FK__ItemHisto__Curre__3552E9B6">
+            <End Role="VUsers" EntitySet="VUsers" />
+            <End Role="ItemHistory" EntitySet="ItemHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ItemHisto__ItemI__345EC57D" Association="Self.FK__ItemHisto__ItemI__345EC57D">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="ItemHistory" EntitySet="ItemHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Items__ItemTypeI__1B9317B3" Association="Self.FK__Items__ItemTypeI__1B9317B3">
+            <End Role="IType" EntitySet="IType" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StoreItem__ItemI__308E3499" Association="Self.FK__StoreItem__ItemI__308E3499">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="StoreItems" EntitySet="StoreItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsersItem__ItemI__2AD55B43" Association="Self.FK__UsersItem__ItemI__2AD55B43">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="UsersItems" EntitySet="UsersItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Stores__StoreLoc__1F63A897" Association="Self.FK__Stores__StoreLoc__1F63A897">
+            <End Role="LLocation" EntitySet="LLocation" />
+            <End Role="Stores" EntitySet="Stores" />
+          </AssociationSet>
+          <AssociationSet Name="FK__StoreItem__Store__2F9A1060" Association="Self.FK__StoreItem__Store__2F9A1060">
+            <End Role="Stores" EntitySet="Stores" />
+            <End Role="StoreItems" EntitySet="StoreItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsersItem__UserI__2BC97F7C" Association="Self.FK__UsersItem__UserI__2BC97F7C">
+            <End Role="VUsers" EntitySet="VUsers" />
+            <End Role="UsersItems" EntitySet="UsersItems" />
+          </AssociationSet>
+          <EntitySet Name="ReportingSystem" EntityType="InventoryManagmentSystemModel.ReportingSystem" />
+          <AssociationSet Name="FK__Reporting__Agenc__69C6B1F5" Association="InventoryManagmentSystemModel.FK__Reporting__Agenc__69C6B1F5">
+            <End Role="Agency" EntitySet="Agency" />
+            <End Role="ReportingSystem" EntitySet="ReportingSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporting__Brand__6BAEFA67" Association="InventoryManagmentSystemModel.FK__Reporting__Brand__6BAEFA67">
+            <End Role="IBrand" EntitySet="IBrand" />
+            <End Role="ReportingSystem" EntitySet="ReportingSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporting__Statu__6CA31EA0" Association="InventoryManagmentSystemModel.FK__Reporting__Statu__6CA31EA0">
+            <End Role="IStatus" EntitySet="IStatus" />
+            <End Role="ReportingSystem" EntitySet="ReportingSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporting__ItemI__67DE6983" Association="InventoryManagmentSystemModel.FK__Reporting__ItemI__67DE6983">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="ReportingSystem" EntitySet="ReportingSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporting__TypeI__6D9742D9" Association="InventoryManagmentSystemModel.FK__Reporting__TypeI__6D9742D9">
+            <End Role="IType" EntitySet="IType" />
+            <End Role="ReportingSystem" EntitySet="ReportingSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporting__Locat__6E8B6712" Association="InventoryManagmentSystemModel.FK__Reporting__Locat__6E8B6712">
+            <End Role="LLocation" EntitySet="LLocation" />
+            <End Role="ReportingSystem" EntitySet="ReportingSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporting__Store__6ABAD62E" Association="InventoryManagmentSystemModel.FK__Reporting__Store__6ABAD62E">
+            <End Role="Stores" EntitySet="Stores" />
+            <End Role="ReportingSystem" EntitySet="ReportingSystem" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reporting__UserI__68D28DBC" Association="InventoryManagmentSystemModel.FK__Reporting__UserI__68D28DBC">
+            <End Role="VUsers" EntitySet="VUsers" />
+            <End Role="ReportingSystem" EntitySet="ReportingSystem" />
+          </AssociationSet>
+          <AssociationSet Name="IStore" Association="InventoryManagmentSystemModel.IStore">
+            <End Role="Stores" EntitySet="Stores" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ReportingSystem">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="AgencyId" Type="Int32" />
+          <Property Name="StoreId" Type="Int32" />
+          <Property Name="BrandId" Type="Int32" />
+          <Property Name="StatusId" Type="Int32" />
+          <Property Name="TypeId" Type="Int32" />
+          <Property Name="LocationId" Type="Int32" />
+          <NavigationProperty Name="Agency" Relationship="InventoryManagmentSystemModel.FK__Reporting__Agenc__69C6B1F5" FromRole="ReportingSystem" ToRole="Agency" />
+          <NavigationProperty Name="IBrand" Relationship="InventoryManagmentSystemModel.FK__Reporting__Brand__6BAEFA67" FromRole="ReportingSystem" ToRole="IBrand" />
+          <NavigationProperty Name="IStatus" Relationship="InventoryManagmentSystemModel.FK__Reporting__Statu__6CA31EA0" FromRole="ReportingSystem" ToRole="IStatus" />
+          <NavigationProperty Name="Items" Relationship="InventoryManagmentSystemModel.FK__Reporting__ItemI__67DE6983" FromRole="ReportingSystem" ToRole="Items" />
+          <NavigationProperty Name="IType" Relationship="InventoryManagmentSystemModel.FK__Reporting__TypeI__6D9742D9" FromRole="ReportingSystem" ToRole="IType" />
+          <NavigationProperty Name="LLocation" Relationship="InventoryManagmentSystemModel.FK__Reporting__Locat__6E8B6712" FromRole="ReportingSystem" ToRole="LLocation" />
+          <NavigationProperty Name="Stores" Relationship="InventoryManagmentSystemModel.FK__Reporting__Store__6ABAD62E" FromRole="ReportingSystem" ToRole="Stores" />
+          <NavigationProperty Name="VUsers" Relationship="InventoryManagmentSystemModel.FK__Reporting__UserI__68D28DBC" FromRole="ReportingSystem" ToRole="VUsers" />
+        </EntityType>
+        <Association Name="FK__Reporting__Agenc__69C6B1F5">
+          <End Type="InventoryManagmentSystemModel.Agency" Role="Agency" Multiplicity="0..1" />
+          <End Type="InventoryManagmentSystemModel.ReportingSystem" Role="ReportingSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agency">
+              <PropertyRef Name="AgencyID" />
+            </Principal>
+            <Dependent Role="ReportingSystem">
+              <PropertyRef Name="AgencyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporting__Brand__6BAEFA67">
+          <End Type="InventoryManagmentSystemModel.IBrand" Role="IBrand" Multiplicity="0..1" />
+          <End Type="InventoryManagmentSystemModel.ReportingSystem" Role="ReportingSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IBrand">
+              <PropertyRef Name="BrandID" />
+            </Principal>
+            <Dependent Role="ReportingSystem">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporting__Statu__6CA31EA0">
+          <End Type="InventoryManagmentSystemModel.IStatus" Role="IStatus" Multiplicity="0..1" />
+          <End Type="InventoryManagmentSystemModel.ReportingSystem" Role="ReportingSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="ReportingSystem">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporting__ItemI__67DE6983">
+          <End Type="InventoryManagmentSystemModel.Items" Role="Items" Multiplicity="0..1" />
+          <End Type="InventoryManagmentSystemModel.ReportingSystem" Role="ReportingSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="ReportingSystem">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporting__TypeI__6D9742D9">
+          <End Type="InventoryManagmentSystemModel.IType" Role="IType" Multiplicity="0..1" />
+          <End Type="InventoryManagmentSystemModel.ReportingSystem" Role="ReportingSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IType">
+              <PropertyRef Name="TypeId" />
+            </Principal>
+            <Dependent Role="ReportingSystem">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporting__Locat__6E8B6712">
+          <End Type="InventoryManagmentSystemModel.LLocation" Role="LLocation" Multiplicity="0..1" />
+          <End Type="InventoryManagmentSystemModel.ReportingSystem" Role="ReportingSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LLocation">
+              <PropertyRef Name="LocationId" />
+            </Principal>
+            <Dependent Role="ReportingSystem">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporting__Store__6ABAD62E">
+          <End Type="InventoryManagmentSystemModel.Stores" Role="Stores" Multiplicity="0..1" />
+          <End Type="InventoryManagmentSystemModel.ReportingSystem" Role="ReportingSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stores">
+              <PropertyRef Name="StoreId" />
+            </Principal>
+            <Dependent Role="ReportingSystem">
+              <PropertyRef Name="StoreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reporting__UserI__68D28DBC">
+          <End Type="InventoryManagmentSystemModel.VUsers" Role="VUsers" Multiplicity="0..1" />
+          <End Type="InventoryManagmentSystemModel.ReportingSystem" Role="ReportingSystem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="ReportingSystem">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="IStore">
+          <End Type="InventoryManagmentSystemModel.Stores" Role="Stores" Multiplicity="0..1" />
+          <End Type="InventoryManagmentSystemModel.Items" Role="Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stores">
+              <PropertyRef Name="StoreId" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="IStore" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InventoryManagmentSystemModelStoreContainer" CdmEntityContainer="InventoryManagmentSystemEntities">
+          <EntitySetMapping Name="Agency">
+            <EntityTypeMapping TypeName="InventoryManagmentSystemModel.Agency">
+              <MappingFragment StoreEntitySet="Agency">
+                <ScalarProperty Name="AgencyID" ColumnName="AgencyID" />
+                <ScalarProperty Name="AgencyName" ColumnName="AgencyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AgencyUserMapping">
+            <EntityTypeMapping TypeName="InventoryManagmentSystemModel.AgencyUserMapping">
+              <MappingFragment StoreEntitySet="AgencyUserMapping">
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+                <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IBrand">
+            <EntityTypeMapping TypeName="InventoryManagmentSystemModel.IBrand">
+              <MappingFragment StoreEntitySet="IBrand">
+                <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IMovingItem">
+            <EntityTypeMapping TypeName="InventoryManagmentSystemModel.IMovingItem">
+              <MappingFragment StoreEntitySet="IMovingItem">
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="previousUserId" ColumnName="previousUserId" />
+                <ScalarProperty Name="currentUserId" ColumnName="currentUserId" />
+                <ScalarProperty Name="currentStatusId" ColumnName="currentStatusId" />
+                <ScalarProperty Name="curretnDateTime" ColumnName="curretnDateTime" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IReturnItem">
+            <EntityTypeMapping TypeName="InventoryManagmentSystemModel.IReturnItem">
+              <MappingFragment StoreEntitySet="IReturnItem">
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="LastUserId" ColumnName="LastUserId" />
+                <ScalarProperty Name="IStatusID" ColumnName="IStatusID" />
+                <ScalarProperty Name="CurrentDateTime" ColumnName="CurrentDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IStatus">
+            <EntityTypeMapping TypeName="InventoryManagmentSystemModel.IStatus">
+              <MappingFragment StoreEntitySet="IStatus">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemHistory">
+            <EntityTypeMapping TypeName="InventoryManagmentSystemModel.ItemHistory">
+              <MappingFragment StoreEntitySet="ItemHistory">
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="CurrentOwnerID" ColumnName="CurrentOwnerID" />
+                <ScalarProperty Name="CurrentStatusID" ColumnName="CurrentStatusID" />
+                <ScalarProperty Name="CurrentDateTime" ColumnName="CurrentDateTime" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="InventoryManagmentSystemModel.Items">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="IStore" ColumnName="IStore" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="ISerialNum" ColumnName="ISerialNum" />
+                <ScalarProperty Name="ItemTypeId" ColumnName="ItemTypeId" />
+                <ScalarProperty Name="ItemBrandId" ColumnName="ItemBrandId" />
+                <ScalarProperty Name="IStatusID" ColumnName="IStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IType">
+            <EntityTypeMapping TypeName="InventoryManagmentSystemModel.IType">
+              <MappingFragment StoreEntitySet="IType">
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="ITypeName" ColumnName="ITypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LLocation">
+            <EntityTypeMapping TypeName="InventoryManagmentSystemModel.LLocation">
+              <MappingFragment StoreEntitySet="LLocation">
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoreItems">
+            <EntityTypeMapping TypeName="InventoryManagmentSystemModel.StoreItems">
+              <MappingFragment StoreEntitySet="StoreItems">
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stores">
+            <EntityTypeMapping TypeName="InventoryManagmentSystemModel.Stores">
+              <MappingFragment StoreEntitySet="Stores">
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+                <ScalarProperty Name="StoreLocationId" ColumnName="StoreLocationId" />
+                <ScalarProperty Name="StoreDetails" ColumnName="StoreDetails" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersItems">
+            <EntityTypeMapping TypeName="InventoryManagmentSystemModel.UsersItems">
+              <MappingFragment StoreEntitySet="UsersItems">
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="currentDateTime" ColumnName="currentDateTime" />
+                <ScalarProperty Name="CurrentStatusId" ColumnName="CurrentStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VUsers">
+            <EntityTypeMapping TypeName="InventoryManagmentSystemModel.VUsers">
+              <MappingFragment StoreEntitySet="VUsers">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportingSystem">
+            <EntityTypeMapping TypeName="InventoryManagmentSystemModel.ReportingSystem">
+              <MappingFragment StoreEntitySet="ReportingSystem">
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="AgencyId" ColumnName="AgencyId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

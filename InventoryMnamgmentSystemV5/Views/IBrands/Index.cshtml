@@ -1,0 +1,41 @@
+﻿@model IEnumerable<InventoryMnamgmentSystemV5.Models.IBrand>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>العلامات التجارية</h2>
+
+<div>
+    <p style="display:inline-block">
+        @Html.ActionLink("إضافة علامة تجارية", "Create")
+    </p>
+    <form asp-controller="IBrands" asp-action="Index"  style="display:inline-block; margin-right:80px">
+        <p>
+            العلامة التجارية: <input type="text" name="searchString" />
+            <input type="submit" value="بحث" />
+        </p>
+    </form>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            <h3>العلامة التجارية</h3>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BrandName)
+        </td>
+        <td>
+            @Html.ActionLink("تعديل", "Edit", new { id=item.BrandID }) |
+            @Html.ActionLink("تفاصيل", "Details", new { id=item.BrandID }) |
+            @Html.ActionLink("حذف", "Delete", new { id=item.BrandID })
+        </td>
+    </tr>
+}
+
+</table>

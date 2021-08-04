@@ -1,0 +1,58 @@
+﻿@model InventoryMnamgmentSystemV5.Models.ItemHistory
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ItemHistory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IStatus.StatusName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IStatus.StatusName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VUsers.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VUsers.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Items.ISerialNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Items.ISerialNum)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RecordId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

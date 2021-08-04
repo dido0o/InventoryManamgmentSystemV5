@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<style>
+    .sub-parts {
+        background-color: #d1d2d4;
+    }
+
+</style>
+
+<div class="jumbotron">
+    <h1>نظام إدارة المخزون </h1>
+    <p class="lead">نظام إدارة المخزون هو نظام يمكنك من إدارة جميع العناصر التي تقوم بتخزينها، كما أنه يقوم بتسجيل جميع العمليات التي تتم على كل عنصر</p>
+    <p><a href="" class="btn btn-primary btn-lg">المزيد &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4 sub-parts">
+        <h2>عمليات النظام: تسليم عهدة</h2>
+        <p>
+            يمكنك هذا النظام من تسليم عهدة لمستخدم محدد، ويقوم النظام بتسجيل المستخدم
+            والعهدة والوقت والتاريخ من أجل تمكين مشرف النظام من متابعة جميع العناصر التي تكون تحت تصرفه
+        </p>
+        <p><a class="btn btn-default" href="">@Html.ActionLink("تسليم عهدة", "create", "UsersItems", null, new { @style = "" }) &raquo;</a></p>
+    </div>
+    <div class="col-md-4" style="background-color: #dddee1">
+        <h2>عمليات النظام: نقل عهدة</h2>
+        <p>
+            يمكنك هذا النظام من نقل عهدة بين المستخدمين، ويقوم النظام بتسجيل المستخدم السابق والمستخدم الحالي للعهدة
+            كما يقوم النظام بتسجيل الوقت والتاريخ من أجل تمكين مشرف النظام من متابعة جميع العناصر التي يتم نقلها
+        </p>
+        <p><a class="btn btn-default" href="">@Html.ActionLink("نقل عهدة", "create", "IMovingItems", null, new { @style = "" }) &raquo;</a></p>
+    </div>
+    <div class="col-md-4" style="background-color: #e1e4ea">
+        <h2>عمليات النظام: سجل العناصر</h2>
+        <p>
+            يقوم النظام بتتبع جميع العمليات التي تتم على العناصر المسجلة فيه بشكل دقيق،
+            سواء كانت عمليات حذف أو إضافة أو تعديل أو غيرها، مما يسمح بتتبع دورة حياة العنصر منذ دخوله النظام وحتى خروجه
+        </p>
+        <p><a class="btn btn-default" href="">@Html.ActionLink("سجل العناصر", "Report", "ItemHistories", null, new { @style = "" }) &raquo;</a></p>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+﻿@model InventoryMnamgmentSystemV5.Models.IMovingItem
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>نقل عنصر</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @*<h4>IMovingItem</h4>*@
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group" style="margin:7px">
+            <h5>الرقم التسلسلي</h5>
+            <div class="">
+                @Html.DropDownList("ItemId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ItemId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-right:7px; margin-top:20px">
+            <h5>المستخدم السابق</h5>
+            <div class="">
+                @Html.DropDownList("previousUserId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.previousUserId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-right:7px; margin-top:20px">
+            <h5>المستخدم الحالي</h5>
+            <div class="">
+                @Html.DropDownList("currentUserId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.currentUserId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-right:7px; margin-top:20px">
+            <h5>حالة العنصر</h5>
+            <div class="">
+                @Html.DropDownList("currentStatusId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.currentStatusId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-right:7px; margin-top:20px">
+            <h5>التاريخ والوقت</h5>
+            <div class="">
+                @Html.EditorFor(model => model.curretnDateTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.curretnDateTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-right:7px; margin-top:20px">
+            <h5>ملاحظات</h5>
+            <div class="">
+                @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="margin-top:7px">
+                <input type="submit" value="موافق" class="btn btn-default"  style="border-color:#808080"/>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("الصفحة الرئيسية", "Index", "Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+         <link href="~/Content/bootstrap.rtl.min.css" rel="stylesheet" />
+         <link href="~/Content/side-menu.css" rel="stylesheet" />
+    <style>
+            .bd-placeholder-img {
+      font-size: 8px;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+    @@media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+    </style>
+
+</head>
+<body style="direction:rtl">
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>*@
+
+    @*--------------------------------------------------------------------------------------------------------------------------------*@
+
+    <section style="background-color:#e6eaee;" >
+        <aside class="bd-aside sticky-xl-top text-muted align-self-start mb-3 mb-xl-5 px-2">
+            <div style="text-align: center">
+                <img style="" src="~/Media/911.png" />
+                <h2 class="h6 pt-4 pb-3 mb-4 border-bottom" style="font-size:12px">
+                    @Html.ActionLink("الصفحة الرئيسية", "Index", "Home")
+                </h2>
+            </div>
+            <nav class="" id="toc" style="width:200px">
+
+                <ul class="list-unstyled">
+
+                    <li class="my-2">
+                        <button class="btn d-inline-flex align-items-center collapsed" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#contents-collapse" aria-controls="contents-collapse"
+                                style="font-size:18px">
+                            إنشاء جديد
+                        </button>
+                        <ul class="list-unstyled ps-3 collapse" id="contents-collapse">
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("إدارة جديدة", "Create", "Agencies", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("عنصر جديد", "Create", "Items", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("مستخدم جديد", "Create", "VUsers", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("مخزن جديد", "Create", "Stores", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("حالة جديدة", "Create", "IStatus", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("علامة تجارية جديدة", "Create", "IBrands", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("نوع جديد", "Create", "ITypes", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("موقع جديد", "Create", "LLocations", null, new { @style = "font-size:12px" })</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="my-2">
+                        <button class="btn d-inline-flex align-items-center collapsed" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#forms-collapse" aria-controls="forms-collapse"
+                                style="font-size:18px">
+                            عمليات النظام
+                        </button>
+                        <ul class="list-unstyled ps-3 collapse" id="forms-collapse">
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("تسليم عهدة", "create", "UsersItems", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("نقل عهدة", "create", "IMovingItems", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("سحب عهدة", "create", "IReturnItems", null, new { @style = "font-size:12px" })</a></li>
+                        </ul>
+                    </li>
+                    <li class="my-2">
+                        <button class="btn d-inline-flex align-items-center collapsed" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#components-collapse" aria-controls="components-collapse"
+                                style="font-size:18px">
+                            التقارير
+                        </button>
+                        <ul class="list-unstyled ps-3 collapse" id="components-collapse">
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("العناصر والمستخدمين", "Report", "UsersItems", null, new { @style = "font-size:10px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("جميع العناصر", "Report", "Items", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("تاريخ العناصر", "Report", "ItemHistories", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("جميع الموظفين", "Report", "AgencyUserMappings", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("العناصر المنقولة", "Report", "IMovingItems", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("العناصر حسب المستودع", "Report", "StoreItems", null, new { @style = "font-size:12px" })</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="my-2">
+                        <button class="btn d-inline-flex align-items-center collapsed" data-bs-toggle="collapse" aria-expanded="false" data-bs-target="#components1-collapse" aria-controls="components-collapse1"
+                                style="font-size:18px">
+                            مشرف النظام
+                        </button>
+                        <ul class="list-unstyled ps-3 collapse" id="components1-collapse">
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink(" إدارة العناصر والمستخدمين", "Index", "UsersItems", null, new { @style = "font-size:10px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("إدارة العناصر", "Index", "Items", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("إدارة الموظفين", "Index", "VUsers", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink(" إدارة العناصر المنقولة", "Index", "IMovingItems", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink(" إدارة العناصر المعادة", "Index", "IReturnItems", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink(" إدارة الأقسام والإدارات", "Index", "Agencies", null, new { @style = "font-size:10px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("إدارة العلامات التجارية", "Index", "IBrands", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("إدارة الموظفين وإداراتهم", "Index", "AgencyUserMappings", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink(" إدارة الحالات", "Index", "IStatus", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink(" إدارة الأنواع", "Index", "ITypes", null, new { @style = "font-size:10px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("إدارة المواقع", "Index", "LLocations", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink("إدارة العناصر والمستودعات", "Index", "StoreItems", null, new { @style = "font-size:12px" })</a></li>
+                            <li><a class="d-inline-flex align-items-center rounded">@Html.ActionLink(" إدارة المستودعات", "Index", "Stores", null, new { @style = "font-size:12px" })</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div style="margin:5px">
+                @Html.Partial("_LoginPartial")
+                </div>
+
+            </nav>
+        </aside>
+    </section>
+
+    @*--------------------------------------------------------------------------------------------------------------------------------*@
+
+    <div class="container body-content" >
+        @RenderBody()
+        <hr />
+        <footer>
+            <p> نظام إدارة المخزون - @DateTime.Now.Year &copy;</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    @*<script src="~/Scripts/side-menu.js"></script>*@
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

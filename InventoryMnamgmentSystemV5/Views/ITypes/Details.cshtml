@@ -1,0 +1,26 @@
+﻿@model InventoryMnamgmentSystemV5.Models.IType
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>IType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ITypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ITypeName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TypeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

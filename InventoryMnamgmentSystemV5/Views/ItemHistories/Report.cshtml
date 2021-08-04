@@ -1,0 +1,54 @@
+﻿@model IEnumerable<InventoryMnamgmentSystemV5.Models.ItemHistory>
+
+@{
+    ViewBag.Title = "Report";
+}
+
+<h2>تقرير تاريخ العناصر</h2>
+
+<form style="display:inline-block; margin:5px">
+    الرقم التسلسلي: <input type="text" name="searchString" />
+    <input type="submit" value="بحث" />
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            <h3>الرقم التسلسلي</h3>
+        </th>
+        <th>
+            <h3>اسم المستخدم</h3>
+        </th>
+        <th>
+            <h3>حالة العنصر</h3>
+        </th>
+        <th>
+            <h3>ملاحظات</h3>
+        </th>
+        <th>
+            <h3>التاريخ والوقت</h3>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Items.ISerialNum)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.VUsers.UserName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IStatus.StatusName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Notes)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CurrentDateTime)
+    </td>
+</tr>
+}
+
+</table>

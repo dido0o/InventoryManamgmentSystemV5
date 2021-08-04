@@ -1,0 +1,48 @@
+﻿@model IEnumerable<InventoryMnamgmentSystemV5.Models.AgencyUserMapping>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>المستخدمين حسب إداراتهم</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+
+<div style="margin-top:20px; margin-right:5px">
+    <form asp-controller="AgencyUserMappings" asp-action="Index">
+        <p>
+            اسم المستخدم: <input type="text" name="SearchString" />
+            <input type="submit" value="بحث" />
+        </p>
+    </form>
+</div>
+<table class="table">
+    <tr>
+        <th>
+            <h3>اسم المستخدم</h3>
+        </th>
+        <th>
+            <h3>الإدارة</h3>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.VUsers.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Agency.AgencyName)
+        </td>
+        <td>
+            @Html.ActionLink("تعديل", "Edit", new { id=item.RecordId }) |
+            @Html.ActionLink("تفاصيل", "Details", new { id=item.RecordId }) |
+            @Html.ActionLink("حذف", "Delete", new { id=item.RecordId })
+        </td>
+    </tr>
+}
+
+</table>

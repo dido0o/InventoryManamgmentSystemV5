@@ -1,0 +1,64 @@
+﻿@model InventoryMnamgmentSystemV5.Models.ItemHistory
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ItemHistory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IStatus.StatusName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IStatus.StatusName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VUsers.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VUsers.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Items.ISerialNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Items.ISerialNum)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
